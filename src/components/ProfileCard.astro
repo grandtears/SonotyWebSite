@@ -1,0 +1,108 @@
+---
+import ParticlesBg from 'particles-bg';
+---
+
+<div id="profile-card" class="card">
+  <img src="/avatar.png" alt="Sonoty avatar" class="avatar" />
+  
+  <h1 class="name">Sonoty</h1>
+  
+  <div class="links">
+    <a href="https://vrchat.com/home/user/usr_668cf573-47de-4418-85fe-95e319e2c413" target="_blank" rel="noopener noreferrer" class="link-button">VRChat</a>
+    <a href="https://note.com/sonoty_hearts" target="_blank" rel="noopener noreferrer" class="link-button">Note</a>
+    <a href="https://x.com/https://x.com/SonotyHearts" target="_blank" rel="noopener noreferrer" class="link-button">X (Twitter)</a>
+    <a href="https://www.instagram.com/sonoty_vrc?igsh=MTBmdGVybzl1cHhweg==" target="_blank" rel="noopener noreferrer" class="link-button">Instagram</a>
+    <a href="https://www.youtube.com/@%E6%80%9D%E3%81%84%E5%87%BA%E3%81%AE%E3%81%99%E3%81%BF%E3%81%A3%E3%82%B3" target="_blank" rel="noopener noreferrer" class="link-button">Youtube</a>
+    <a href="https://github.com/grandtears" target="_blank" rel="noopener noreferrer" class="link-button">GitHub</a>
+  </div>
+
+  <ParticlesBg type="cobweb" color="#ffffff" num={35} bg={true} client:only="react" />
+</div>
+
+<style>
+  /* --- フェードイン用のスタイル --- */
+  #profile-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  #profile-card.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- カード全体のスタイル (パーティクル用に修正) --- */
+  .card {
+    position: relative; /* パーティクルの配置基準 */
+    overflow: hidden;   /* はみ出し防止 */
+    background-color: rgba(20, 20, 40, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    color: white;
+    text-align: center;
+    width: clamp(300px, 90vw, 380px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  /* パーティクルを背景に配置 */
+  .card > :global(div[class*="particles-bg-canvas"]) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* 他のコンテンツの背面に配置 */
+  }
+
+  /* ↓↓↓ 他のコンテンツがパーティクルの手前に来るように設定 ↓↓↓ */
+  .avatar,
+  .name,
+  .links {
+    z-index: 1;
+    position: relative; /* z-indexを有効にするため */
+  }
+  
+  .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  }
+  .name {
+    font-size: 2.25rem;
+    margin: 0;
+    font-weight: 700;
+  }
+  .links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .link-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 16px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease, border 0.3s ease;
+    border: 1px solid transparent;
+  }
+  .link-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+</style>
